@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iftar Registration 2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #fccf3e;
+            --emerald: #064e3b;
+            --bg: #011612;
+            --bkash: #e2136e;
+            --whatsapp: #25D366;
+            --error: #ff4d4d;
+        }
+        body {
+            background: radial-gradient(circle at top, var(--emerald), var(--bg));
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .form-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(252, 207, 62, 0.3);
+            border-radius: 24px;
+            padding: 30px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            text-align: center;
+        }
+        
+        h1 { color: var(--gold); margin-bottom: 5px; font-size: 1.8rem; }
+        
+        .bkash-box {
+            background: white; color: #111; padding: 15px; border-radius: 15px; margin-bottom: 25px; border-left: 8px solid var(--bkash);
+            position: relative;
+        }
+        .number-row { 
+            display: flex; justify-content: space-between; align-items: center; background: #f3f4f6; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 1.2rem;
+        }
+        .copy-btn {
+            background: var(--bkash); color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.3s;
+        }
+        .copy-btn:active { transform: scale(0.9); }
+
+        /* Floating Toast Notification */
+        #copyToast {
+            visibility: hidden; min-width: 150px; background-color: var(--gold); color: var(--bg); text-align: center; border-radius: 50px; padding: 10px; position: fixed; z-index: 100; bottom: 30px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        #copyToast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 1.5s; }
+
+        .input-group { text-align: left; margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: var(--gold); font-size: 0.85rem; }
+        input {
+            width: 100%; padding: 12px; border-radius: 10px; border: 1px solid transparent; background: white; color: #111; box-sizing: border-box; transition: 0.3s;
+        }
+        input:focus { outline: none; border: 2px solid var(--gold); }
+
+        /* Animated Registration Button */
+        button.submit-btn {
+            width: 100%; padding: 15px; background: var(--gold); color: var(--bg); border: none; border-radius: 10px; font-weight: 800; cursor: pointer; margin: 15px 0; transition: all 0.3s ease;
+            box-shadow: 0 0 0 0 rgba(252, 207, 62, 0.7);
+            animation: pulse-gold 2s infinite;
+        }
+        button.submit-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(252, 207, 62, 0.3); }
+
+        /* Animated WhatsApp Button */
+        .social-footer { margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .btn-social { 
+            text-decoration: none; color: white; padding: 12px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; display: block; transition: all 0.3s ease;
+            background: var(--whatsapp);
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+        }
+        .btn-social:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
+
+        /* Animations */
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(252, 207, 62, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(252, 207, 62, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(252, 207, 62, 0); }
+        }
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+        .dev-credit { margin-top: 15px; font-size: 0.8rem; opacity: 0.9; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .dev-credit a { color: #1877F2; text-decoration: none; font-weight: bold; }
+        #successPage { display: none; width: 100%; justify-content: center; }
+    </style>
+</head>
+<body>
+
+<div id="formContainer">
+    <div class="form-card">
+        <h1>🌙 Iftar-E-Yanaara</h1>
+        <p style="opacity: 0.8; margin-bottom: 20px;">Pay via bKash then Register (449 TK)</p>
+
+        <div class="bkash-box">
+            <div style="font-weight:bold; margin-bottom:5px;">bKash Personal</div>
+            <div class="number-row">
+                <span id="bkashNum">01407181747</span>
+                <button class="copy-btn" onclick="copyNum()">COPY</button>
+            </div>
+        </div>
+
+        <form id="regForm">
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="example@mail.com" required>
+            </div>
+            <div class="input-group">
+                <label>Mobile Number (11 Digits)</label>
+                <input type="tel" name="mobile" pattern="[0-9]{11}" placeholder="017XXXXXXXX" required>
+            </div>
+            <div class="input-group">
+                <label>bKash TrxID / Reference</label>
+                <input type="text" name="payment" placeholder="Enter TrxID" required>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">REGISTER NOW</button>
+        </form>
+
+        <div class="social-footer">
+            <a href="https://chat.whatsapp.com/EpK2qvWVQYq4gi2ffyFRnT" class="btn-social">
+                <i class="fab fa-whatsapp"></i> Join WhatsApp Group
+            </a>
+        </div>
+
+        <div class="dev-credit">
+            Developed by <a href="https://www.facebook.com/share/1DXTpD88EQ/"><i class="fab fa-facebook"></i> MIRAJ</a>
+        </div>
+    </div>
+</div>
+
+<div id="successPage">
+    <div class="form-card">
+        <h1 style="font-size: 3rem;">🎉</h1>
+        <h2 style="color: var(--gold);">Congratulations!</h2>
+        <p>Thank you for registering. We have received your details.</p>
+        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin: 15px 0;">
+            Please check your inbox! A confirmation email will be sent once we verify your payment.
+        </div>
+        <a href="javascript:location.reload()" style="color: var(--gold); text-decoration: none; font-weight: bold;">← Register Another</a>
+    </div>
+</div>
+
+<div id="copyToast">Number Copied!</div>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxbffUg6jNMCrItJPk6hb5gWboO5wjaOvXDHDKyRSZtbETk9V_meRXvY82dJs7VEzvdVw/exec'; 
+    const form = document.getElementById('regForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function copyNum() {
+        const num = document.getElementById("bkashNum").innerText;
+        navigator.clipboard.writeText(num);
+        
+        // Custom Pop-up effect
+        const toast = document.getElementById("copyToast");
+        toast.className = "show";
+        setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 2000);
+    }
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Processing...";
+        submitBtn.style.animation = "none"; // Stop pulse while processing
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => { showSuccess(); })
+            .catch(error => {
+                alert("Something went wrong. Please try again.");
+                submitBtn.disabled = false;
+                submitBtn.innerText = "REGISTER NOW";
+                submitBtn.style.animation = "pulse-gold 2s infinite";
+            });
+    });
+
+    function showSuccess() {
+        document.getElementById("formContainer").style.display = "none";
+        document.getElementById("successPage").style.display = "flex";
+    }
+</script>
+
+</body>
+</html>
